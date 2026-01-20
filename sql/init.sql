@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS books (
     description TEXT,
     image_url VARCHAR(255),
     price DECIMAL(10, 2)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO books (title, author, description) VALUES 
 ('5 Múi Giờ, 10 Tiếng Bay', 'Nhật Ký Yêu Xa', 'Câu chuyện về tình yêu xa đầy cảm xúc.'),
