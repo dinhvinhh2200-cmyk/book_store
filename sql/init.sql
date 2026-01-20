@@ -1,16 +1,16 @@
--- 1. Tạo bảng sách [cite: 35]
-CREATE TABLE books (
-    id INT AUTO_INCREMENT PRIMARY KEY, [cite: 36]
-    title VARCHAR(255) NOT NULL, [cite: 37]
-    author VARCHAR(100), [cite: 38]
-    description TEXT, [cite: 39]
-    content TEXT, [cite: 40]
-    catalog_id INT, [cite: 41]
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP [cite: 42]
-) ENGINE=InnoDB; [cite: 48]
+CREATE DATABASE IF NOT EXISTS book_store;
+USE book_store;
 
--- 2. Chèn dữ liệu mẫu [cite: 81]
-INSERT INTO books (title, author, description, content, catalog_id) VALUES 
-('5 Múi Giờ, 10 Tiếng Bay', 'Nhật Ký Yêu Xa', 'Truyện tình cảm', 'Nội dung sách 1...', 1), [cite: 82]
-('Gói Nỗi Buồn Lại Và Ném Đi', 'An Nhiên', 'Tản văn chữa lành', 'Nội dung sách 2...', 1), [cite: 83]
-('Clean Code', 'Robert C. Martin', 'Lập trình chuẩn mực', 'Nội dung sách 5...', 4); [cite: 86]
+CREATE TABLE IF NOT EXISTS books (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(100),
+    description TEXT,
+    image_url VARCHAR(255),
+    price DECIMAL(10, 2)
+) ENGINE=InnoDB;
+
+INSERT INTO books (title, author, description) VALUES 
+('5 Múi Giờ, 10 Tiếng Bay', 'Nhật Ký Yêu Xa', 'Câu chuyện về tình yêu xa đầy cảm xúc.'),
+('Gói Nỗi Buồn Lại Và Ném Đi', 'An Nhiên', 'Cuốn sách giúp bạn vượt qua những ngày khó khăn.'),
+('Hẹn Nhau Ở Một Cuộc Đời Khác', 'Gari', 'Những tản văn nhẹ nhàng về cuộc sống.');
