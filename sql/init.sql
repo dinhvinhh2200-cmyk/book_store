@@ -7,7 +7,6 @@ CREATE TABLE IF NOT EXISTS books (
     author VARCHAR(100),
     description TEXT,
     image_url VARCHAR(255),
-    price DECIMAL(10, 2)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO books (title, author, description, image_url) VALUES 
