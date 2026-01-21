@@ -7,6 +7,17 @@ const bodyParser = require('body-parser');
 const { engine } = require('express-handlebars'); // cài đặt handlebars 
 const bookRoutes = require('./routes/book.route');
 
+let multer = require('multer')
+let storage = multer.diskStorage({
+    destination:function(req,file,cb) {
+        cb(null, path.join(__dirname, 'public/img'))
+    },
+    filename:function(req,file,cb) {
+        cb(null,Date.now()+'-'+file.originalname)
+    }
+})
+let upload = multer({storage:storage})
+
 const port = 3000; 
 
 app.use(bodyParser.urlencoded({ extended: true }));
