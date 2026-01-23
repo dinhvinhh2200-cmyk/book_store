@@ -21,7 +21,7 @@ const Book = {
 
     // khoi phuc sach
     restore: async (id) => {
-        const query = 'UPDATE book SET is_deleted = 0 WHERE id = ?'
+        const query = 'UPDATE books SET is_deleted = 0 WHERE id = ?'
         return await db.execute(query, [id])
     },
 
