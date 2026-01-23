@@ -1,9 +1,11 @@
 <div class="container" style="margin-top: 30px;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <h2>Quản lý danh mục sách</h2>
-        <a href="/add" class="nav-btn signup" style="text-decoration: none;">+ Thêm sách mới</a> </div>
+        <a href="/add" class="nav-btn signup" style="text-decoration: none;">+ Thêm sách mới</a>
+    </div>
 
-    <table class="table" style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+    <table class="table"
+        style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
         <thead>
             <tr style="background-color: #333; color: white; text-align: left;">
                 <th style="padding: 15px;">ID</th>
@@ -15,16 +17,24 @@
         </thead>
         <tbody>
             {{#each books}}
-            <tr style="border-bottom: 1px solid #eee;">
+            <tr
+                style="{{#if this.is_deleted}}opacity: 0.5; background-color: #f2f2f2;{{/if}} border-bottom: 1px solid #eee;">
                 <td style="padding: 15px;">{{this.id}}</td>
                 <td style="padding: 15px;">
-                    <img src="/img/{{this.image_url}}" style="width: 50px; height: 70px; object-fit: cover; border-radius: 4px;">
+                    <img src="/img/{{this.image_url}}"
+                        style="width: 50px; filter: {{#if this.is_deleted}}grayscale(100%){{/if}};">
                 </td>
-                <td style="padding: 15px; font-weight: 600;">{{this.title}}</td>
-                <td style="padding: 15px;">{{this.author}}</td>
+                <td style="padding: 15px;">{{this.title}}</td>
+
                 <td style="padding: 15px;">
-                    <a href="/edit/{{this.id}}" style="color: #ff9800; text-decoration: none; margin-right: 15px; font-weight: 600;">Sửa</a>
-                    <a href="/admin/delete/{{this.id}}" onclick="return confirm('Bạn có chắc chắn muốn xóa sách này?')" style="color: #e74c3c; text-decoration: none; font-weight: 600;">Xóa</a>
+                    {{#if this.is_deleted}}
+                    <a href="/admin/restore/{{this.id}}"
+                        style="color: #2ecc71; font-weight: bold; text-decoration: none;">Khôi phục</a>
+                    {{else}}
+                    <a href="/edit/{{this.id}}" style="color: #ff9800; margin-right: 10px;">Sửa</a>
+                    <a href="/admin/delete/{{this.id}}" onclick="return confirm('Ẩn sách này?')"
+                        style="color: #e74c3c;">Xóa tạm</a>
+                    {{/if}}
                 </td>
             </tr>
             {{/each}}

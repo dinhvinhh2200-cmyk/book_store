@@ -2,9 +2,27 @@ const { create } = require('express-handlebars');
 const db = require('../config/db')
 
 const Book = {
-    getAll: async () => {
-        const [rows] = await db.execute('SELECT * FROM books');
+    getAllActive: async () => {
+        const [rows] = await db.execute('SELECT * FROM books WHERE is_deleted = 0');
         return rows
+    },
+
+    // lay sach cho trang admin
+    getAllForAdmin: async () => {
+        const [rows] = await db.execute('SELECT * FROM books')
+        return rows
+    },
+
+    // xoa men 
+    softDelete: async (id) => {
+        const query = 'UPDATE books SET is_deleted = 1 WHERE id = ?'
+        return await db.execute(query, [id])
+    },
+
+    // khoi phuc sach
+    restore: async (id) => {
+        const query = 'UPDATE book SET is_deleted = 0 WHERE id = ?'
+        return await db.execute(query, [id])
     },
 
     // ham tạo mới sách
@@ -13,12 +31,6 @@ const Book = {
         const query = 'InSERT INTO books (title , author , description, image_url) VALUE (?, ?, ?, ?)'
         return await db.execute(query, [title, author , description, image_url])
     },
-
-    // ham xoa sach
-    delete: async(id) => {
-        const query = 'DELETE FROM books WHERE id = ?'
-        return await db.execute(query, [id])
-    }
 }
 module.exports = Book 
 

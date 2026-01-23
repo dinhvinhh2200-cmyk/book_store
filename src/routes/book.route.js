@@ -17,6 +17,7 @@ router.get('/', bookController.getAllBooks)
 router.get('/add', bookController.getAddBook)
 router.post('/add', upload.single('image'), bookController.postAddBook)
 router.get('/admin', bookController.getAdminBooks)
-router.get('/admin/delete/:id', bookController.deleteBook)
+router.get('/admin/delete/:id', bookController.postSoftDelete)
+router.get('/admin/restore/:id', bookController.postRestore)
 
 module.exports = router 
