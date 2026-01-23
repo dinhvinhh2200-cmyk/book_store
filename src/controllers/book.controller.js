@@ -12,7 +12,7 @@ exports.getAllBooks = async (req , res) => {
 
 // hien thi form them sach
 exports.getAddBook = (req , res) => {
-    res.render('add-book')
+    res.render('admin/add-book')
 }
 
 exports.postAddBook = async (req , res) => {
@@ -24,5 +24,26 @@ exports.postAddBook = async (req , res) => {
     }catch (error) {
         console.error(error)
         res.status(500).send('loi khi them sach')
+    }
+}
+
+exports.getAdminBooks = async (req , res) => {
+    try {
+        const books = await Book.getAll()
+        res.render('admin/list-books', {books})
+    } catch (error) {
+        console.error(error)
+        res.status(500).send('loi khi lay du lieu cho trang admin')
+    }
+}
+
+exports.deleteBook = async (req , res) => {
+    try {
+        const id = req.params.id
+        await Book.delete(id)
+        res.redirect('/admin') 
+    }catch (error) {
+        console.error(error)
+        res.status(500).send('loi khi xoa sach')
     }
 }

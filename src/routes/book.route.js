@@ -16,5 +16,7 @@ const upload = multer({storage: storage})
 router.get('/', bookController.getAllBooks)
 router.get('/add', bookController.getAddBook)
 router.post('/add', upload.single('image'), bookController.postAddBook)
+router.get('/admin', bookController.getAdminBooks)
+router.get('/admin/delete/:id', bookController.deleteBook)
 
 module.exports = router 
