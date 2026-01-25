@@ -19,5 +19,9 @@ router.post('/add', upload.single('image'), bookController.postAddBook)
 router.get('/admin', bookController.getAdminBooks)
 router.get('/admin/delete/:id', bookController.postSoftDelete)
 router.get('/admin/restore/:id', bookController.postRestore)
+// route hien thi form
+router.get('/edit/:id', bookController.getEditBook)
+// route xu ly cap nhap
+router.post('/edit/:id', upload.single('image'), bookController.postEditBook)
 
 module.exports = router 

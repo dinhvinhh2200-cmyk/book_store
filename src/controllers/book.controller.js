@@ -49,5 +49,32 @@ exports.postRestore = async (req , res) => {
     res.redirect('/admin')
 }
 
+// hiển thị form sửa
+exports.getEditBook = async (req , res) => {
+    try {
+        const book = await Book.getById(req.params.id)
+        res.render('admin/edit-book', {book})
+    }catch (error) {
+        console.error(error)
+        res.status(500).send('loi khi lay thong tin sach')
+    }
+}
+
+// xử lý cập nhập thông tin
+exports.postEditBook = async (req , res) => {
+    try {
+        const { title , author , description} = req.body
+        const book = await Book.getById(req.params.id)
+
+        const image_url = req.file ? req.file.filename : book.image_url
+
+        await Book.update(req.params.id, {title , author , description , image_url})
+        res.redirect('/admin')
+    } catch (error) {
+        console.error(error)
+        res.status(500).send('loi khi cap nhap sach')
+    }
+}
+
 
 

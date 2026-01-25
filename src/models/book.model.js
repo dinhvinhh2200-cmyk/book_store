@@ -31,6 +31,17 @@ const Book = {
         const query = 'InSERT INTO books (title , author , description, image_url) VALUE (?, ?, ?, ?)'
         return await db.execute(query, [title, author , description, image_url])
     },
+
+    getById: async (id) => {
+        const [rows] = await db.execute('SELECT * FROM books WHERE id = ?', [id])
+        return rows[0]
+    },
+
+    update: async (id , data) => {
+        const {title , author, description , image_url} = data 
+        const query = 'UPDATE books SET title = ? , author = ? , description = ? , image_url = ? WHERE id = ?'
+        return await db.execute(query, [title, author, description, image_url, id])
+    }
 }
 module.exports = Book 
 

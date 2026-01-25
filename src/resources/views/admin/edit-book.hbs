@@ -1,0 +1,28 @@
+<div class="container" style="margin-top: 50px; max-width: 600px">
+    <h2>Chỉnh sửa thông sách</h2>
+    <form action="/edit/{{book.id}}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="">Tiêu đề sách:</label>
+        <input type="text" name="title" class="form-control" value="{{book.title}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="">Tác giả:</label>
+        <input type="text" name="author" class="form-control" value="{{book.author}}">
+    </div>
+
+    <div class="form-group">
+        <label for="">Mô tả:</label>
+        <textarea name="description" class="form-control" id="">{{book.description}}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="">Hình ảnh bìa hiện tại:</label><br>
+        <img src="/img/{{book.image_url}}" style="width: 100px margin-bottom: 10px" alt=""><br>
+        <label for="">thay đổi ảnh mới</label>
+        <input type="file" name="image" class="form-control-file">
+    </div>
+    <button type="submit" class="btn-read" style="margin-top: 20px">Cập nhập</button>
+    <a href="/admin" class="btn-read" style="background-color: #777; text-decoration: none;">Hủy</a>
+    </form>
+</div>
