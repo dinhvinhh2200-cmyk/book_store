@@ -76,5 +76,17 @@ exports.postEditBook = async (req , res) => {
     }
 }
 
+// hien thi danh sach chi tiet sach 
+exports.getBookDetail = async (req, res) => {
+    try {
+        const book = await Book.getBookById(req.params.id)
+        if (!book) {
+            return res.status(404).send('khong tim thay sach')
+        }
+        res.render('book-detail', {book, title: book.title})
+    }catch (error) {
+        res.status(500).send(error.message)
+    }
+}
 
 

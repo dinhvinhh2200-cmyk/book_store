@@ -41,6 +41,11 @@ const Book = {
         const {title , author, description , image_url} = data 
         const query = 'UPDATE books SET title = ? , author = ? , description = ? , image_url = ? WHERE id = ?'
         return await db.execute(query, [title, author, description, image_url, id])
+    },
+
+    async getBookById (id) {
+        const [rows] = await db.execute('SELECT * FROM books WHERE id = ? AND is_deleted = 0', [id])
+        return rows[0]
     }
 }
 module.exports = Book 

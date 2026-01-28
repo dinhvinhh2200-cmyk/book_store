@@ -23,5 +23,7 @@ router.get('/admin/restore/:id', bookController.postRestore)
 router.get('/edit/:id', bookController.getEditBook)
 // route xu ly cap nhap
 router.post('/edit/:id', upload.single('image'), bookController.postEditBook)
+// router chi tiet sach
+router.get('/book/:id', bookController.getBookDetail)
 
 module.exports = router 
