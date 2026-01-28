@@ -1,16 +1,28 @@
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-4">
-            <img src="/img/{{book.image}}" alt="{{book.title}}" class="img-fluid rounded">
+
+
+<div class="container">
+    <div class="detail-wrapper">
+        <div class="detail-left">
+            <div class="image-box">
+                <img src="/img/{{book.image_url}}" alt="{{book.title}}">
+            </div>
         </div>
 
-        <div class="col-md-8">
-            <h1>{{book.title}}</h1>
-            <p class="text-muted">Tac gia: <strong>{{book.author}}</strong></p>
-            <hr>
-            <h5>Mo ta:</h5>
-            <p>{{book.description}}</p>
+        <div class="detail-right">
+            <h1 class="book-title-detail">{{book.title}}</h1>
+            <p class="author-info">Tác giả: {{book.author}}</p>
             
+            <div class="divider"></div>
+
+            <div class="description-section">
+                <h5>Giới thiệu nội dung</h5>
+                <p class="description-text">{{book.description}}</p>
+            </div>
+
+            <div class="action-buttons">
+                <a href="#" class="btn-custom btn-buy">Đọc ngay</a>
+                <a href="/" class="btn-custom btn-back-home">Trở lại</a>
+            </div>
         </div>
     </div>
 </div>
